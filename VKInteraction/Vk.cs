@@ -74,7 +74,6 @@ namespace VKInteraction
             Autorized = false;
             GroupId = 0;
             token = new CommunityAccessToken(GroupToken, 0, 0);
-            var stoken = new ServiceAccessToken("8daa69f48daa69f48daa69f4c98dfb9b2188daa8daa69f4d48b067705a13f838097203d", 5370581);
 
             var groupAndTest = client.Groups.GetById(new Citrina.StandardApi.Models.GroupsGetByIdRequest() { AccessToken = token, GroupId = Group });
             groupAndTest.Wait();
