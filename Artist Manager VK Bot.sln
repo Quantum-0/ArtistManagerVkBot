@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnOff", "TurnOff\TurnOff.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meow", "Meow\Meow.csproj", "{250F896F-98EE-4204-A87D-32C82D5E5559}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greeting", "Greeting\Greeting.csproj", "{0E1C4D61-1009-44A4-A614-6D501D1DE341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KickToDraw", "KickToDraw\KickToDraw.csproj", "{66EE1FA3-FF21-4872-9005-4B61CFE845E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{250F896F-98EE-4204-A87D-32C82D5E5559}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{250F896F-98EE-4204-A87D-32C82D5E5559}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{250F896F-98EE-4204-A87D-32C82D5E5559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1C4D61-1009-44A4-A614-6D501D1DE341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1C4D61-1009-44A4-A614-6D501D1DE341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1C4D61-1009-44A4-A614-6D501D1DE341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1C4D61-1009-44A4-A614-6D501D1DE341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66EE1FA3-FF21-4872-9005-4B61CFE845E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EE1FA3-FF21-4872-9005-4B61CFE845E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EE1FA3-FF21-4872-9005-4B61CFE845E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EE1FA3-FF21-4872-9005-4B61CFE845E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

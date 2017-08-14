@@ -1,9 +1,13 @@
 ﻿using BaseForBotExtension;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using VKInteraction;
 
 namespace Meow
@@ -24,14 +28,50 @@ namespace Meow
         {
             if (text == "meow" || text == "мяу")
             {
-                CallUsersGridUpdate(new UsersGridUpdateEventArgs(mycol.Name, userid, Guid.NewGuid()));
-                vk.SendMessage(userid, "woof");
+                if (!meows.ContainsKey(userid))
+                    meows.Add(userid, 0);
+
+                meows[userid]++;
+                CallUsersGridUpdate(new UsersGridUpdateEventArgs(mycol.Name, userid, meows[userid]));
+                vk.SendMessage(userid, "woof " + meows[userid]);
                 return ProcessResult.Processed;
             }
             return ProcessResult.Skipped;
         }
 
+        public Dictionary<int, int> meows = new Dictionary<int, int>();
+
         CustomColumn mycol = new CustomColumn() { DefaultValue = "0", Header = "Meows", Name = "MeowTest" };
         public override IEnumerable<CustomColumn> GetUsersGridColumns() => new [] { mycol };
+
+        public override void Load()
+        {
+            using (var fs = new FileStream(ConfigFile, FileMode.Open))
+            {
+                using (var sr = new StreamReader(fs))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        var line = sr.ReadLine().Split(':');
+                        meows.Add(int.Parse(line.First()), int.Parse(line.Last()));
+                    }
+                }
+            }
+        }
+
+        public override void Save()
+        {
+            using (var fs = new FileStream(ConfigFile, FileMode.Create))
+            {
+                using (var sw = new StreamWriter(fs))
+                {
+                    foreach (var meow in meows.ToList())
+                    {
+                        var line = meow.Key.ToString() + ':' + meow.Value.ToString();
+                        sw.WriteLine(line);
+                    }
+                }
+            }
+        }
     }
 }

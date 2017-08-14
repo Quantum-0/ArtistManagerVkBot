@@ -5,16 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using ProtoBuf;
+using System.ComponentModel;
 
 namespace VKInteraction
 {
+    [ProtoContract]
     public sealed class Message
     {
+        [ProtoMember(1)]
         public int Id { get; private set; }
+        [ProtoMember(2)]
         public string Text { get; private set; }
+        [ProtoMember(3)]
         public string Attachments { get; private set; }
+        [ProtoMember(4, IsRequired = true), DefaultValue(MessageDirection.Unknown)]
         public MessageDirection Dir { get; private set; }
+        [ProtoMember(5)]
         public DateTime DateTime { get; private set; }
+
+        private Message()
+        {
+
+        }
 
         public Message(int id, DateTime date, MessageDirection dir, string text, string attachments = null)
         {
@@ -26,17 +39,15 @@ namespace VKInteraction
         }
     }
 
+    [ProtoContract]
     public enum MessageDirection
     {
+        [ProtoEnum]
         Unknown = 0,
+        [ProtoEnum]
         In = 1,
-        Received = 1,
-        FromOther = 1,
-        ToMe = 1,
-        Out = 2,
-        Sended = 2,
-        FromMe = 2,
-        ToOther = 2
+        [ProtoEnum]
+        Out = 2
     }
 
     public class VK

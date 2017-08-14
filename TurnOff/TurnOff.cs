@@ -1,9 +1,13 @@
 ﻿using BaseForBotExtension;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace TurnOff
 {
@@ -53,6 +57,27 @@ namespace TurnOff
 
         public override IEnumerable<CustomColumn> GetUsersGridColumns() => new[] { TurnedOffColumn };
 
+        public override void Load()
+        {
+            using (var fs = new FileStream(ConfigFile, FileMode.Open))
+            {
+                //IFormatter formatter = new BinaryFormatter();
+                var serializer = new XmlSerializer(typeof(List<int>));
+                TurnedOff = (List<int>)serializer.Deserialize(fs);
+                //TurnedOff = (List<int>)formatter.Deserialize(fs);
+            }
+        }
+
+        public override void Save()
+        {
+            using (var fs = new FileStream(ConfigFile, FileMode.Create))
+            {
+                var serializer = new XmlSerializer(typeof(List<int>));
+                serializer.Serialize(fs, TurnedOff);
+            }
+        }
+
+        //[Serializable]
         List<int> TurnedOff = new List<int>();
     }
 }
