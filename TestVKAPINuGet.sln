@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestVKAPINuGet", "TestVKAPINuGet.csproj", "{7F68CE26-25C0-427F-8103-5BE418997F76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artist Manager Bot", "..\Artist Manager Bot\Artist Manager Bot.csproj", "{B0B1F8CC-822E-43F1-802A-AC113CC51D67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKInteraction", "VKInteraction\VKInteraction.csproj", "{C243E36A-DA44-4148-8299-E557BD2F07C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseForBotExtension", "..\BaseForBotExtension\BaseForBotExtension.csproj", "{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Links", "..\Artist Manager Bot Extensions\Links\Links.csproj", "{CACF7417-A64F-443B-A127-DA34056D3D37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnOff", "TurnOff\TurnOff.csproj", "{FE672DC7-32FD-479B-A860-3396DD5E1064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meow", "Meow\Meow.csproj", "{250F896F-98EE-4204-A87D-32C82D5E5559}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F68CE26-25C0-427F-8103-5BE418997F76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F68CE26-25C0-427F-8103-5BE418997F76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F68CE26-25C0-427F-8103-5BE418997F76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F68CE26-25C0-427F-8103-5BE418997F76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B1F8CC-822E-43F1-802A-AC113CC51D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B1F8CC-822E-43F1-802A-AC113CC51D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B1F8CC-822E-43F1-802A-AC113CC51D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B1F8CC-822E-43F1-802A-AC113CC51D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C243E36A-DA44-4148-8299-E557BD2F07C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C243E36A-DA44-4148-8299-E557BD2F07C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C243E36A-DA44-4148-8299-E557BD2F07C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C243E36A-DA44-4148-8299-E557BD2F07C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CACF7417-A64F-443B-A127-DA34056D3D37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CACF7417-A64F-443B-A127-DA34056D3D37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CACF7417-A64F-443B-A127-DA34056D3D37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CACF7417-A64F-443B-A127-DA34056D3D37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE672DC7-32FD-479B-A860-3396DD5E1064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE672DC7-32FD-479B-A860-3396DD5E1064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE672DC7-32FD-479B-A860-3396DD5E1064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE672DC7-32FD-479B-A860-3396DD5E1064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250F896F-98EE-4204-A87D-32C82D5E5559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250F896F-98EE-4204-A87D-32C82D5E5559}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250F896F-98EE-4204-A87D-32C82D5E5559}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250F896F-98EE-4204-A87D-32C82D5E5559}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
