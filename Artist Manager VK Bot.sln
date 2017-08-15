@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Artist Manager Bot", "..\Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKInteraction", "VKInteraction\VKInteraction.csproj", "{C243E36A-DA44-4148-8299-E557BD2F07C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseForBotExtension", "..\BaseForBotExtension\BaseForBotExtension.csproj", "{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseForBotExtension", "BaseForBotExtension\BaseForBotExtension.csproj", "{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Links", "..\Artist Manager Bot Extensions\Links\Links.csproj", "{CACF7417-A64F-443B-A127-DA34056D3D37}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Links", "Links\Links.csproj", "{CACF7417-A64F-443B-A127-DA34056D3D37}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnOff", "TurnOff\TurnOff.csproj", "{FE672DC7-32FD-479B-A860-3396DD5E1064}"
 EndProject
