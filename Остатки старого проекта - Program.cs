@@ -43,11 +43,6 @@ namespace TestVKAPINuGet
         // сделать гуй - в гуе выводить отдельно диалоги с пользователями, возможность включать/выключать, загрузить/сохранить базу данных, просмотрл неотвеченных сообщений, лог обучения и т.п.
         // сделать херню которая будет следить чтоб методы отправлялись не слишком часто
 
-        const string SkidAT = "f582b5851be5de48f5a9a8e30cba5ddab2565f82cdbf59512ba2191ce4bb006dc1743d94c1a5978a6ab7e";
-        const string AT = "85bc54e9263437fe43b05e6c5217138b8f6982a27a1e317f011bd0c191a3ea2cd5a62cee3d2872e176034";
-        const string ServiceAT = "8daa69f48daa69f48daa69f4c98dfb9b2188daa8daa69f4d48b067705a13f838097203d";
-        const string SkidFA = "http://www.furaffinity.net/user/aseniyaaa";
-        const string SkidDA = "http://mr-skid.deviantart.com/";
         const int SkidID = 87324758;
         static VkClient<UserState> client;
         static Random rnd;

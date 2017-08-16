@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using VKInteraction;
 
 namespace BaseForBotExtension
@@ -36,6 +37,7 @@ namespace BaseForBotExtension
 
         public abstract ProcessResult ProcessMessage(int userid, string text);
         public virtual IEnumerable<CustomColumn> GetUsersGridColumns() => Enumerable.Empty<CustomColumn>();
+        public virtual IEnumerable<Form> GetCustomTabs() => Enumerable.Empty<Form>();
         // custom column info - default value + name + title
 
         public event EventHandler<UsersGridUpdateEventArgs> UsersGridUpdate;
