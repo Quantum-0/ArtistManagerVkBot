@@ -120,8 +120,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageProcessedEventArgs.cs" />
+    <Compile Include="MessagesDataBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserAddedEventArgs.cs" />
+    <Compile Include="UserChangedEventArgs.cs" />
+    <Compile Include="UserRemovedEventArgs.cs" />
+    <Compile Include="UsersData.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

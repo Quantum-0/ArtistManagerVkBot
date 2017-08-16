@@ -4,50 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
-using ProtoBuf;
-using System.ComponentModel;
 
 namespace VKInteraction
 {
-    [ProtoContract]
-    public sealed class Message
-    {
-        [ProtoMember(1)]
-        public int Id { get; private set; }
-        [ProtoMember(2)]
-        public string Text { get; private set; }
-        [ProtoMember(3)]
-        public string Attachments { get; private set; }
-        [ProtoMember(4, IsRequired = true), DefaultValue(MessageDirection.Unknown)]
-        public MessageDirection Dir { get; private set; }
-        [ProtoMember(5)]
-        public DateTime DateTime { get; private set; }
-
-        private Message()
-        {
-
-        }
-
-        public Message(int id, DateTime date, MessageDirection dir, string text, string attachments = null)
-        {
-            Id = id;
-            Text = text;
-            Dir = dir;
-            DateTime = date;
-            Attachments = attachments;
-        }
-    }
-
-    [ProtoContract]
-    public enum MessageDirection
-    {
-        [ProtoEnum]
-        Unknown = 0,
-        [ProtoEnum]
-        In = 1,
-        [ProtoEnum]
-        Out = 2
-    }
 
     public class VK
     {
@@ -62,113 +21,11 @@ namespace VKInteraction
         CancellationTokenSource ctsReceiving;
         private Dictionary<int, int> LastMessageFromUser = new Dictionary<int, int>();
 
-        // Singleton
-        private VK()
-        {
-
-        }
-        private static VK _instance;
-        public static VK Interaction
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new VK();
-
-                return _instance;
-            }
-        }
-
-        public void Autorize(string GroupToken, string Group)
-        {
-            Autorized = false;
-            GroupId = 0;
-            token = new CommunityAccessToken(GroupToken, 0, 0);
-
-            var groupAndTest = client.Groups.GetById(new Citrina.StandardApi.Models.GroupsGetByIdRequest() { AccessToken = token, GroupId = Group });
-            groupAndTest.Wait();
-            if (groupAndTest.IsCompleted && groupAndTest.Result.IsError == false)
-            {
-                if (!groupAndTest.Result.Response.First().IsAdmin == true)
-                    return;
-
-                Autorized = true;
-                this.GroupId = GroupId;
-                GroupName = groupAndTest.Result.Response.First().Name;
-            }
-        }
-
-        public string GetUsername(int userId)
-        {
-            try
-            {
-                var res = client.Users.Get(new Citrina.StandardApi.Models.UsersGetRequest() { AccessToken = token, UserIds = new[] { userId.ToString() } }).Result;
-                return res.Response.First().FirstName + ' ' + res.Response.First().LastName;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public IEnumerable<MessagesMessage> GetMessages(int userId, int count)
-        {
-            try
-            {
-                var result = client.Messages.GetHistory(new Citrina.StandardApi.Models.MessagesGetHistoryRequest() { AccessToken = token, UserId = userId.ToString(), Count = count, Rev = 0 }).Result;
-
-                //if (result.IsError || result == null)
-                    //UpdateMessagesError?.Invoke(this, EventArgs.Empty);
-
-                return result.Response.Items.Reverse().ToArray();
-            }
-            catch
-            {
-                //UpdateMessagesError?.Invoke(this, EventArgs.Empty);
-                return null;
-            }
-        }
-
-        public void SendMessage(int userId, string message, IEnumerable<string> attachments = null)
-        {
-            try
-            {
-                var result = client.Messages.Send(new Citrina.StandardApi.Models.MessagesSendRequest() { AccessToken = token, UserId = userId, Message = message, Attachment = attachments == null ? null : string.Join(",", attachments/*attachments.Select(a => "photo" + a.OwnerId + '_' + a.Id)*/.ToArray()) }).Result;
-                if (result.Response.HasValue)
-                    MessageSended?.Invoke(this, new MessageEventArgs(new Message(userId, DateTime.Now, MessageDirection.Out, message, string.Join(",", attachments ?? Enumerable.Empty<string>()))));
-                else
-                    SendMessageError?.Invoke(this, new MessageEventArgs(new Message(userId, DateTime.Now, MessageDirection.Out, message, string.Join(",", attachments ?? Enumerable.Empty<string>()))));
-            }
-            catch
-            {
-                UpdateMessagesError?.Invoke(this, EventArgs.Empty);
-            }
-        }
-
-        public IEnumerable<MessagesDialog> GetDialogs(int count)
-        {
-            try
-            {
-                var result = client.Messages.GetDialogs(new Citrina.StandardApi.Models.MessagesGetDialogsRequest() { AccessToken = token, Count = count, Unread = true }).Result;
-
-                if (result.IsError || result == null)
-                    UpdateMessagesError?.Invoke(this, EventArgs.Empty);
-
-                return result.Response?.Items;
-            }
-            catch
-            {
-                UpdateMessagesError?.Invoke(this, EventArgs.Empty);
-                return null;
-            }
-        }
-
         public void StartReceiving()
         {
             ctsReceiving = new CancellationTokenSource();
             Task.Factory.StartNew(() => Receiving(ctsReceiving.Token), ctsReceiving.Token);
         }
-
         private void Receiving(CancellationToken token)
         {
             IsReceiving = true;
@@ -214,12 +71,123 @@ namespace VKInteraction
             }
             IsReceiving = false;
         }
-
         public void StopReceiving()
         {
             ctsReceiving.Cancel();
         }
-        
+
+        // Singleton
+        private VK()
+        {
+
+        }
+        private static VK _instance;
+        public static VK Interaction
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new VK();
+
+                return _instance;
+            }
+        }
+
+        /// <summary> Авторизация ВК </summary>
+        public void Autorize(string GroupToken, string Group)
+        {
+            // Помечаем что не авторизовано и создаём токен
+            Autorized = false;
+            GroupId = 0;
+            token = new CommunityAccessToken(GroupToken, 0, 0);
+
+            // Пытаемся обратится с токеном к АПИ и получить информацио о своей группе
+            var groupAndTest = client.Groups.GetById(new Citrina.StandardApi.Models.GroupsGetByIdRequest() { AccessToken = token, GroupId = Group });
+            groupAndTest.Wait();
+            // Если не вылетело исключение и не произошла ошибка в АПИ - токен верный
+            if (groupAndTest.IsCompleted && groupAndTest.Result.IsError == false)
+            {
+                // Если не админ - значит группа не наша, выходим с Autorized == false
+                if (!groupAndTest.Result.Response.First().IsAdmin == true)
+                    return;
+
+                // Иначе - успешно, сохраняем GroupID и GroupName
+                Autorized = true;
+                this.GroupId = GroupId;
+                GroupName = groupAndTest.Result.Response.First().Name;
+            }
+        }
+
+        /// <summary> Получение имени пользователя по ID </summary>
+        public string GetUsername(int userId)
+        {
+            try
+            {
+                var res = client.Users.Get(new Citrina.StandardApi.Models.UsersGetRequest() { AccessToken = token, UserIds = new[] { userId.ToString() } }).Result;
+                return res.Response.First().FirstName + ' ' + res.Response.First().LastName;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary> Получение сообщеней </summary>
+        public IEnumerable<MessagesMessage> GetMessages(int userId, int count)
+        {
+            try
+            {
+                var result = client.Messages.GetHistory(new Citrina.StandardApi.Models.MessagesGetHistoryRequest() { AccessToken = token, UserId = userId.ToString(), Count = count, Rev = 0 }).Result;
+
+                //if (result.IsError || result == null)
+                    //UpdateMessagesError?.Invoke(this, EventArgs.Empty);
+
+                return result.Response.Items.Reverse().ToArray();
+            }
+            catch
+            {
+                //UpdateMessagesError?.Invoke(this, EventArgs.Empty);
+                return null;
+            }
+        }
+
+        /// <summary> Отправка сообщения </summary>
+        public void SendMessage(int userId, string message, IEnumerable<string> attachments = null)
+        {
+            try
+            {
+                var result = client.Messages.Send(new Citrina.StandardApi.Models.MessagesSendRequest() { AccessToken = token, UserId = userId, Message = message, Attachment = attachments == null ? null : string.Join(",", attachments/*attachments.Select(a => "photo" + a.OwnerId + '_' + a.Id)*/.ToArray()) }).Result;
+                if (result.Response.HasValue)
+                    MessageSended?.Invoke(this, new MessageEventArgs(new Message(userId, DateTime.Now, MessageDirection.Out, message, string.Join(",", attachments ?? Enumerable.Empty<string>()))));
+                else
+                    SendMessageError?.Invoke(this, new MessageEventArgs(new Message(userId, DateTime.Now, MessageDirection.Out, message, string.Join(",", attachments ?? Enumerable.Empty<string>()))));
+            }
+            catch
+            {
+                UpdateMessagesError?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary> Получение списка диалогов </summary>
+        public IEnumerable<MessagesDialog> GetDialogs(int count)
+        {
+            try
+            {
+                var result = client.Messages.GetDialogs(new Citrina.StandardApi.Models.MessagesGetDialogsRequest() { AccessToken = token, Count = count, Unread = true }).Result;
+
+                if (result.IsError || result == null)
+                    UpdateMessagesError?.Invoke(this, EventArgs.Empty);
+
+                return result.Response?.Items;
+            }
+            catch
+            {
+                UpdateMessagesError?.Invoke(this, EventArgs.Empty);
+                return null;
+            }
+        }
+
+        /// <summary> Преобразование сообщения из пакета Citrina в собственный тип сообщения </summary>
         private Message CitrinaMessageToMyMessage(MessagesMessage message, MessageDirection dir)
         {
             return new Message(message.UserId.Value, message.Date.Value, dir, message.Body, message.Attachments != null ? string.Join(",", message.Attachments.Select(a => a.ToString())) : "");

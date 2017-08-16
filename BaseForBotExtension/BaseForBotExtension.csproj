@@ -49,6 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BotExtension.cs" />
+    <Compile Include="CustomColumn.cs" />
+    <Compile Include="IBotExtensionInfo.cs" />
+    <Compile Include="Priority.cs" />
+    <Compile Include="ProcessResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendMessageEventArgs.cs" />
     <Compile Include="UsersGridUpdateEventArgs.cs" />
