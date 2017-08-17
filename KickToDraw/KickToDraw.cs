@@ -1,6 +1,7 @@
 ﻿using BaseForBotExtension;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,23 @@ namespace KickToDraw
 
                 return ProcessResult.Processed;
             }
+
+            if (text.ToLower() == "чоделаеш, пакажи")
+            {
+                MakeScreenshot().Save("test.png");
+                vk.SendImage(userid, "test.png");
+            }
+
             return ProcessResult.Skipped;
+        }
+
+        private Bitmap MakeScreenshot()
+        {
+            Graphics graph = null;
+            var bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            graph = Graphics.FromImage(bmp);
+            graph.CopyFromScreen(0, 0, 0, 0, bmp.Size);
+            return bmp;
         }
 
         public override void Save()

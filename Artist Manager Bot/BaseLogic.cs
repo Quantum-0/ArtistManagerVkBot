@@ -33,7 +33,10 @@ namespace Artist_Manager_Bot
         public event EventHandler<MessageEventArgs> MessageReceived;
         public event EventHandler<MessageEventArgs> MessageSended;
         public event EventHandler<MessageProcessedEventArgs> MessageProcessed;
-        
+        public event EventHandler<MessageProcessedEventArgs> MessageProcessing;
+        public event EventHandler<MessageProcessedEventArgs> MessageSkipped;
+        public event EventHandler<MessageProcessedEventArgs> ExtensionStopProcessing;
+
         /// <summary> Получение списка названий подгруженных модулей </summary>
         public string[] GetExtensions() => Extensions.Select(e => e.Name).ToArray();
         /// <summary> Получение информации о модуле </summary>
@@ -105,14 +108,20 @@ namespace Artist_Manager_Bot
                     continue;
 
                 // Передаём модулям сообщения для обработки
+                MessageProcessing?.Invoke(this, new MessageProcessedEventArgs(extension));
                 var res = extension.ProcessMessage(e.Message.Id, e.Message.Text);
                 // Логирование и остановка обработки
                 if (res == ProcessResult.Processed)
                 {
                     MessageProcessed?.Invoke(this, new MessageProcessedEventArgs(extension));
                     if (extension.StopAfterProcessed)
+                    {
+                        ExtensionStopProcessing?.Invoke(this, new MessageProcessedEventArgs(extension));
                         return;
+                    }
                 }
+                else if (res == ProcessResult.Skipped)
+                    MessageSkipped?.Invoke(this, new MessageProcessedEventArgs(extension));
             }
         }
         

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66EE1FA3-FF21-4872-9005-4B61CFE845E0}</ProjectGuid>
+    <ProjectGuid>{249270FB-22B8-4B04-8435-8E50AE01A164}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KickToDraw</RootNamespace>
-    <AssemblyName>KickToDraw</AssemblyName>
+    <RootNamespace>Info</RootNamespace>
+    <AssemblyName>Info</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,8 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KickToDraw.cs" />
+    <Compile Include="Info.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BaseForBotExtension\BaseForBotExtension.csproj">
-      <Project>{9fb7ff58-a95d-44f1-8a46-c43ba4812bb3}</Project>
+      <Project>{9FB7FF58-A95D-44F1-8A46-C43BA4812BB3}</Project>
       <Name>BaseForBotExtension</Name>
     </ProjectReference>
     <ProjectReference Include="..\VKInteraction\VKInteraction.csproj">

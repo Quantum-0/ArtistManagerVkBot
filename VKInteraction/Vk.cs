@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Drawing;
+using Citrina.StandardApi.Models;
 
 namespace VKInteraction
 {
@@ -185,6 +187,17 @@ namespace VKInteraction
                 UpdateMessagesError?.Invoke(this, EventArgs.Empty);
                 return null;
             }
+        }
+
+        public void SendImage(int userId, string fname)
+        {
+            var call = client.Photos.GetMessagesUploadServer(new PhotosGetMessagesUploadServerRequest() { AccessToken = token }).Result;
+            var upload = client.Uploader.Photos.UploadMessagePhotoAsync(call.Response, fname).Result;
+            if (upload.IsError)
+                return;
+            var saved = client.Photos.SaveMessagesPhoto(new PhotosSaveMessagesPhotoRequest() { AccessToken = token, Photo = upload.Data.Photo, Hash = upload.Data.Hash, Server = upload.Data.Server }).Result;
+            var photo = "photo" + saved.Response.First().OwnerId + "_" + saved.Response.First().Id;
+            var msg = client.Messages.Send(new MessagesSendRequest() { AccessToken = token, UserId = userId, Attachment = photo }).Result;
         }
 
         /// <summary> Преобразование сообщения из пакета Citrina в собственный тип сообщения </summary>

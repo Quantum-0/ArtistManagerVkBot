@@ -29,28 +29,29 @@
         private void InitializeComponent()
         {
             this.tokenTextBox = new System.Windows.Forms.TextBox();
-            this.listBoxModules = new System.Windows.Forms.ListBox();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.checkBoxModuleEnabled = new System.Windows.Forms.CheckBox();
-            this.textBoxModuleInfo = new System.Windows.Forms.TextBox();
+            this.textBoxGroupId = new System.Windows.Forms.TextBox();
+            this.buttonStart = new System.Windows.Forms.Button();
+            this.buttonStop = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.textBoxLog = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.textBoxGroupId = new System.Windows.Forms.TextBox();
-            this.buttonStart = new System.Windows.Forms.Button();
-            this.buttonStop = new System.Windows.Forms.Button();
-            this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBoxModuleEnabled = new System.Windows.Forms.CheckBox();
+            this.textBoxModuleInfo = new System.Windows.Forms.TextBox();
+            this.listBoxModules = new System.Windows.Forms.ListBox();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage5.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // tokenTextBox
@@ -65,71 +66,93 @@
             this.tokenTextBox.Enter += new System.EventHandler(this.tokenAndGidTextBox_Enter);
             this.tokenTextBox.Leave += new System.EventHandler(this.tokenTextBox_Leave);
             // 
-            // listBoxModules
+            // textBoxGroupId
             // 
-            this.listBoxModules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.textBoxGroupId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxGroupId.Location = new System.Drawing.Point(269, 12);
+            this.textBoxGroupId.Name = "textBoxGroupId";
+            this.textBoxGroupId.Size = new System.Drawing.Size(138, 20);
+            this.textBoxGroupId.TabIndex = 6;
+            this.textBoxGroupId.Text = "Group ID";
+            this.textBoxGroupId.Enter += new System.EventHandler(this.tokenAndGidTextBox_Enter);
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStart.Location = new System.Drawing.Point(414, 12);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(57, 20);
+            this.buttonStart.TabIndex = 1;
+            this.buttonStart.Text = "Start";
+            this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // buttonStop
+            // 
+            this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStop.Enabled = false;
+            this.buttonStop.Location = new System.Drawing.Point(477, 12);
+            this.buttonStop.Name = "buttonStop";
+            this.buttonStop.Size = new System.Drawing.Size(57, 20);
+            this.buttonStop.TabIndex = 7;
+            this.buttonStop.Text = "Stop";
+            this.buttonStop.UseVisualStyleBackColor = true;
+            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.textBoxLog);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(515, 224);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Log";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // textBoxLog
+            // 
+            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLog.Location = new System.Drawing.Point(0, 0);
+            this.textBoxLog.Multiline = true;
+            this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.Size = new System.Drawing.Size(515, 224);
+            this.textBoxLog.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.richTextBox1);
+            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(515, 224);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Messages";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(126, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(386, 218);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "";
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBoxModules.FormattingEnabled = true;
-            this.listBoxModules.IntegralHeight = false;
-            this.listBoxModules.Location = new System.Drawing.Point(6, 6);
-            this.listBoxModules.Name = "listBoxModules";
-            this.listBoxModules.Size = new System.Drawing.Size(120, 212);
-            this.listBoxModules.TabIndex = 3;
-            this.listBoxModules.SelectedIndexChanged += new System.EventHandler(this.listBoxModules_SelectedIndexChanged);
-            // 
-            // tabControl
-            // 
-            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabPage4);
-            this.tabControl.Controls.Add(this.tabPage5);
-            this.tabControl.Location = new System.Drawing.Point(12, 38);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(523, 250);
-            this.tabControl.TabIndex = 5;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.checkBoxModuleEnabled);
-            this.tabPage1.Controls.Add(this.textBoxModuleInfo);
-            this.tabPage1.Controls.Add(this.listBoxModules);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(515, 224);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Modules";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxModuleEnabled
-            // 
-            this.checkBoxModuleEnabled.AutoSize = true;
-            this.checkBoxModuleEnabled.Enabled = false;
-            this.checkBoxModuleEnabled.Location = new System.Drawing.Point(132, 201);
-            this.checkBoxModuleEnabled.Name = "checkBoxModuleEnabled";
-            this.checkBoxModuleEnabled.Size = new System.Drawing.Size(65, 17);
-            this.checkBoxModuleEnabled.TabIndex = 5;
-            this.checkBoxModuleEnabled.Text = "Enabled";
-            this.checkBoxModuleEnabled.UseVisualStyleBackColor = true;
-            this.checkBoxModuleEnabled.CheckedChanged += new System.EventHandler(this.checkBoxModuleEnabled_CheckedChanged);
-            // 
-            // textBoxModuleInfo
-            // 
-            this.textBoxModuleInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxModuleInfo.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.textBoxModuleInfo.Location = new System.Drawing.Point(132, 6);
-            this.textBoxModuleInfo.Multiline = true;
-            this.textBoxModuleInfo.Name = "textBoxModuleInfo";
-            this.textBoxModuleInfo.ReadOnly = true;
-            this.textBoxModuleInfo.Size = new System.Drawing.Size(377, 189);
-            this.textBoxModuleInfo.TabIndex = 4;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.IntegralHeight = false;
+            this.listBox1.Items.AddRange(new object[] {
+            "All"});
+            this.listBox1.Location = new System.Drawing.Point(3, 3);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(117, 218);
+            this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -173,92 +196,71 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
-            // tabPage3
+            // tabPage1
             // 
-            this.tabPage3.Controls.Add(this.richTextBox1);
-            this.tabPage3.Controls.Add(this.listBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(515, 224);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Messages";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage1.Controls.Add(this.checkBoxModuleEnabled);
+            this.tabPage1.Controls.Add(this.textBoxModuleInfo);
+            this.tabPage1.Controls.Add(this.listBoxModules);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(515, 224);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Modules";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // checkBoxModuleEnabled
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.checkBoxModuleEnabled.AutoSize = true;
+            this.checkBoxModuleEnabled.Enabled = false;
+            this.checkBoxModuleEnabled.Location = new System.Drawing.Point(132, 201);
+            this.checkBoxModuleEnabled.Name = "checkBoxModuleEnabled";
+            this.checkBoxModuleEnabled.Size = new System.Drawing.Size(65, 17);
+            this.checkBoxModuleEnabled.TabIndex = 5;
+            this.checkBoxModuleEnabled.Text = "Enabled";
+            this.checkBoxModuleEnabled.UseVisualStyleBackColor = true;
+            this.checkBoxModuleEnabled.CheckedChanged += new System.EventHandler(this.checkBoxModuleEnabled_CheckedChanged);
+            // 
+            // textBoxModuleInfo
+            // 
+            this.textBoxModuleInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(126, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(386, 218);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.textBoxModuleInfo.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.textBoxModuleInfo.Location = new System.Drawing.Point(132, 6);
+            this.textBoxModuleInfo.Multiline = true;
+            this.textBoxModuleInfo.Name = "textBoxModuleInfo";
+            this.textBoxModuleInfo.ReadOnly = true;
+            this.textBoxModuleInfo.Size = new System.Drawing.Size(377, 189);
+            this.textBoxModuleInfo.TabIndex = 4;
             // 
-            // listBox1
+            // listBoxModules
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxModules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.Items.AddRange(new object[] {
-            "All"});
-            this.listBox1.Location = new System.Drawing.Point(3, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(117, 218);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxModules.FormattingEnabled = true;
+            this.listBoxModules.IntegralHeight = false;
+            this.listBoxModules.Location = new System.Drawing.Point(6, 6);
+            this.listBoxModules.Name = "listBoxModules";
+            this.listBoxModules.Size = new System.Drawing.Size(120, 212);
+            this.listBoxModules.TabIndex = 3;
+            this.listBoxModules.SelectedIndexChanged += new System.EventHandler(this.listBoxModules_SelectedIndexChanged);
             // 
-            // tabPage4
+            // tabControl
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(515, 224);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Learning";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(515, 224);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Log";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // textBoxGroupId
-            // 
-            this.textBoxGroupId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxGroupId.Location = new System.Drawing.Point(269, 12);
-            this.textBoxGroupId.Name = "textBoxGroupId";
-            this.textBoxGroupId.Size = new System.Drawing.Size(138, 20);
-            this.textBoxGroupId.TabIndex = 6;
-            this.textBoxGroupId.Text = "Group ID";
-            this.textBoxGroupId.Enter += new System.EventHandler(this.tokenAndGidTextBox_Enter);
-            // 
-            // buttonStart
-            // 
-            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStart.Location = new System.Drawing.Point(414, 12);
-            this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(57, 20);
-            this.buttonStart.TabIndex = 1;
-            this.buttonStart.Text = "Start";
-            this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
-            // buttonStop
-            // 
-            this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStop.Enabled = false;
-            this.buttonStop.Location = new System.Drawing.Point(477, 12);
-            this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(57, 20);
-            this.buttonStop.TabIndex = 7;
-            this.buttonStop.Text = "Stop";
-            this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage5);
+            this.tabControl.HotTrack = true;
+            this.tabControl.Location = new System.Drawing.Point(12, 38);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(523, 250);
+            this.tabControl.TabIndex = 5;
             // 
             // Form1
             // 
@@ -274,12 +276,14 @@
             this.Text = "Artist Manager Bot";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsers)).EndInit();
-            this.tabPage3.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,23 +291,23 @@
 
         #endregion
         private System.Windows.Forms.TextBox tokenTextBox;
-        private System.Windows.Forms.ListBox listBoxModules;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBoxModuleInfo;
-        private System.Windows.Forms.DataGridView dataGridUsers;
         private System.Windows.Forms.TextBox textBoxGroupId;
         private System.Windows.Forms.Button buttonStart;
         private System.Windows.Forms.Button buttonStop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.CheckBox checkBoxModuleEnabled;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridUsers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.CheckBox checkBoxModuleEnabled;
+        private System.Windows.Forms.TextBox textBoxModuleInfo;
+        private System.Windows.Forms.ListBox listBoxModules;
+        private System.Windows.Forms.TabControl tabControl;
     }
 }
 
