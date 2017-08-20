@@ -35,8 +35,8 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.richTextBoxMessages = new System.Windows.Forms.RichTextBox();
+            this.listBoxDialogs = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dataGridUsers = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,8 +63,8 @@
             this.tokenTextBox.Size = new System.Drawing.Size(251, 20);
             this.tokenTextBox.TabIndex = 1;
             this.tokenTextBox.Text = "Token";
-            this.tokenTextBox.Enter += new System.EventHandler(this.tokenAndGidTextBox_Enter);
-            this.tokenTextBox.Leave += new System.EventHandler(this.tokenTextBox_Leave);
+            this.tokenTextBox.Enter += new System.EventHandler(this.TokenAndGidTextBox_Enter);
+            this.tokenTextBox.Leave += new System.EventHandler(this.TokenTextBox_Leave);
             // 
             // textBoxGroupId
             // 
@@ -74,7 +74,7 @@
             this.textBoxGroupId.Size = new System.Drawing.Size(138, 20);
             this.textBoxGroupId.TabIndex = 6;
             this.textBoxGroupId.Text = "Group ID";
-            this.textBoxGroupId.Enter += new System.EventHandler(this.tokenAndGidTextBox_Enter);
+            this.textBoxGroupId.Enter += new System.EventHandler(this.TokenAndGidTextBox_Enter);
             // 
             // buttonStart
             // 
@@ -85,7 +85,7 @@
             this.buttonStart.TabIndex = 1;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
-            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            this.buttonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
             // buttonStop
             // 
@@ -97,7 +97,7 @@
             this.buttonStop.TabIndex = 7;
             this.buttonStop.Text = "Stop";
             this.buttonStop.UseVisualStyleBackColor = true;
-            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            this.buttonStop.Click += new System.EventHandler(this.ButtonStop_Click);
             // 
             // tabPage5
             // 
@@ -120,8 +120,8 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.richTextBox1);
-            this.tabPage3.Controls.Add(this.listBox1);
+            this.tabPage3.Controls.Add(this.richTextBoxMessages);
+            this.tabPage3.Controls.Add(this.listBoxDialogs);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(515, 224);
@@ -131,28 +131,28 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.richTextBoxMessages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(126, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(386, 218);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.richTextBoxMessages.Location = new System.Drawing.Point(126, 3);
+            this.richTextBoxMessages.Name = "richTextBox1";
+            this.richTextBoxMessages.Size = new System.Drawing.Size(386, 218);
+            this.richTextBoxMessages.TabIndex = 1;
+            this.richTextBoxMessages.Text = "";
             // 
-            // listBox1
+            // listBoxDialogs
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listBoxDialogs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.Items.AddRange(new object[] {
+            this.listBoxDialogs.FormattingEnabled = true;
+            this.listBoxDialogs.IntegralHeight = false;
+            this.listBoxDialogs.Items.AddRange(new object[] {
             "All"});
-            this.listBox1.Location = new System.Drawing.Point(3, 3);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(117, 218);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxDialogs.Location = new System.Drawing.Point(3, 3);
+            this.listBoxDialogs.Name = "listBoxDialogs";
+            this.listBoxDialogs.Size = new System.Drawing.Size(117, 218);
+            this.listBoxDialogs.TabIndex = 0;
+            this.listBoxDialogs.SelectedIndexChanged += new System.EventHandler(this.ListBoxDialogs_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -219,7 +219,7 @@
             this.checkBoxModuleEnabled.TabIndex = 5;
             this.checkBoxModuleEnabled.Text = "Enabled";
             this.checkBoxModuleEnabled.UseVisualStyleBackColor = true;
-            this.checkBoxModuleEnabled.CheckedChanged += new System.EventHandler(this.checkBoxModuleEnabled_CheckedChanged);
+            this.checkBoxModuleEnabled.CheckedChanged += new System.EventHandler(this.CheckBoxModuleEnabled_CheckedChanged);
             // 
             // textBoxModuleInfo
             // 
@@ -244,7 +244,7 @@
             this.listBoxModules.Name = "listBoxModules";
             this.listBoxModules.Size = new System.Drawing.Size(120, 212);
             this.listBoxModules.TabIndex = 3;
-            this.listBoxModules.SelectedIndexChanged += new System.EventHandler(this.listBoxModules_SelectedIndexChanged);
+            this.listBoxModules.SelectedIndexChanged += new System.EventHandler(this.ListBoxModules_SelectedIndexChanged);
             // 
             // tabControl
             // 
@@ -297,8 +297,8 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TextBox textBoxLog;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxMessages;
+        private System.Windows.Forms.ListBox listBoxDialogs;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridUsers;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;

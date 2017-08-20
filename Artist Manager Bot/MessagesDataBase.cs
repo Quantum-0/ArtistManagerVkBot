@@ -20,7 +20,7 @@ namespace Artist_Manager_Bot
             messages = Serializer.Deserialize<Dictionary<int, LinkedList<Message>>>(stream);
 
         public Message[] GetMessagesFrom(User user) =>
-            messages.ContainsKey(user.Id) ? messages[user.Id].ToArray() : null;
+            messages.ContainsKey(user.Id) ? messages[user.Id].ToArray() : new Message[] { };
 
         public Message[] GetAllMessages(int maxforeach = 10) =>
             messages.SelectMany(m => m.Value.Reverse()

@@ -104,7 +104,7 @@ namespace VKInteraction
             token = new CommunityAccessToken(GroupToken, 0, 0);
 
             // Пытаемся обратится с токеном к АПИ и получить информацио о своей группе
-            var groupAndTest = client.Groups.GetById(new Citrina.StandardApi.Models.GroupsGetByIdRequest() { AccessToken = token, GroupId = Group });
+            var groupAndTest = client.Groups.GetById(new GroupsGetByIdRequest() { AccessToken = token, GroupId = Group });
             groupAndTest.Wait();
             // Если не вылетело исключение и не произошла ошибка в АПИ - токен верный
             if (groupAndTest.IsCompleted && groupAndTest.Result.IsError == false)
@@ -189,6 +189,7 @@ namespace VKInteraction
             }
         }
 
+        /// <summary> Отправка изображения </summary>
         public void SendImage(int userId, string fname)
         {
             var call = client.Photos.GetMessagesUploadServer(new PhotosGetMessagesUploadServerRequest() { AccessToken = token }).Result;
@@ -198,6 +199,15 @@ namespace VKInteraction
             var saved = client.Photos.SaveMessagesPhoto(new PhotosSaveMessagesPhotoRequest() { AccessToken = token, Photo = upload.Data.Photo, Hash = upload.Data.Hash, Server = upload.Data.Server }).Result;
             var photo = "photo" + saved.Response.First().OwnerId + "_" + saved.Response.First().Id;
             var msg = client.Messages.Send(new MessagesSendRequest() { AccessToken = token, UserId = userId, Attachment = photo }).Result;
+        }
+
+        public string[] GetAlbumPictures(int albumId, int ownerId = 0)
+        {
+            if (ownerId == 0)
+                ownerId = -GroupId;
+
+            var photos = client.Photos.Get(new PhotosGetRequest() { AccessToken = serviceToken, AlbumId = albumId.ToString(), OwnerId = -ownerId }).Result;
+            return photos.Response.Items.Select(p => $"photo{p.OwnerId}_{p.Id}").ToArray();
         }
 
         /// <summary> Преобразование сообщения из пакета Citrina в собственный тип сообщения </summary>

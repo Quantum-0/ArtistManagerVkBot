@@ -11,6 +11,7 @@ namespace KickToDraw
 {
     public class KickToDraw : BotExtension
     {
+        private const bool SCREENSHOT_ALLOWED = false;
         public override string Name => "Kick";
 
         public override string Description => "Пинок";
@@ -39,7 +40,7 @@ namespace KickToDraw
                 return ProcessResult.Processed;
             }
 
-            if (text.ToLower() == "чоделаеш, пакажи")
+            if (SCREENSHOT_ALLOWED && text.ToLower() == "чоделаеш, пакажи")
             {
                 MakeScreenshot().Save("test.png");
                 vk.SendImage(userid, "test.png");
