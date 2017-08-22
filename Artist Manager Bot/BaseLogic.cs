@@ -128,6 +128,29 @@ namespace Artist_Manager_Bot
         /// <summary> Авторизация ВК </summary>
         public void Autorize(string token, string group) => vk.Autorize(token, group);
 
+        /// <summary> Сервисная авторизация </summary>
+        public bool ServiceAutorize(string fname)
+        {
+            if (!File.Exists(fname))
+                return false;
+
+            //System.Security.Cryptography.
+            try
+            {
+                var lines = File.ReadAllLines(fname);
+                if (lines.Length != 2)
+                    return false;
+                var token = lines[0];
+                var appid = int.Parse(lines[1]);
+                vk.SetServiceToken(token, appid);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         /// <summary> Загрузка DLL модулей </summary>
         public void LoadDLLs()
         {
@@ -181,6 +204,9 @@ namespace Artist_Manager_Bot
         /// <summary> Загрузка всего </summary>
         public void LoadAll()
         {
+            // Сервисная авторизация 
+            ServiceAutorize("ServiceAuth.txt");
+
             // Загрузка пользователей
             if (File.Exists("usrs.bin"))
                 using (var fs = new FileStream("usrs.bin", FileMode.Open))

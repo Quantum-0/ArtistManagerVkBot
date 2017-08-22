@@ -12,7 +12,7 @@ namespace VKInteraction
 
     public class VK
     {
-        IAccessToken token;
+        IAccessToken token, stoken;
         CitrinaClient client = new CitrinaClient();
         public bool IsReceiving { get; private set; }
         public string GroupName { get; private set; }
@@ -120,6 +120,12 @@ namespace VKInteraction
             }
         }
 
+        /// <summary> Установка сервисного токена </summary>
+        public void SetServiceToken(string token, int appid)
+        {
+            stoken = new ServiceAccessToken(token, appid);
+        }
+
         /// <summary> Получение имени пользователя по ID </summary>
         public string GetUsername(int userId)
         {
@@ -201,12 +207,13 @@ namespace VKInteraction
             var msg = client.Messages.Send(new MessagesSendRequest() { AccessToken = token, UserId = userId, Attachment = photo }).Result;
         }
 
+        /// <summary> Получение изображений из альбома </summary>
         public string[] GetAlbumPictures(int albumId, int ownerId = 0)
         {
             if (ownerId == 0)
                 ownerId = -GroupId;
 
-            var photos = client.Photos.Get(new PhotosGetRequest() { AccessToken = serviceToken, AlbumId = albumId.ToString(), OwnerId = -ownerId }).Result;
+            var photos = client.Photos.Get(new PhotosGetRequest() { AccessToken = stoken, AlbumId = albumId.ToString(), OwnerId = -ownerId }).Result;
             return photos.Response.Items.Select(p => $"photo{p.OwnerId}_{p.Id}").ToArray();
         }
 
