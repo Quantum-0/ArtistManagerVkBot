@@ -273,6 +273,7 @@ namespace Artist_Manager_Bot
             Controller.MessageSended += (s, e) => Log("Отправлен ответ " + e.Message.Id + " c текстом:" + e.Message.Text);
             Controller.MessageProcessed += (s, e) => Log("Сообщение обработано модулем " + e.ProcessedBy.Name);
             Controller.MessageProcessing += (s, e) => Log("Сообщение передано в обработку модулю " + e.ProcessedBy.Name);
+            Controller.MessagesUpdateError += (s, e) => Log("Ошибка обновления сообщений");
             Controller.Users.UserAdded += (s, e) => Log($"Добавлен пользователь id{e.NewUser.Id} ({e.NewUser.Name})");
             Controller.Users.UserChanged += (s, e) => Log($"Данные пользователя id{e.Id} изменены");
             Controller.MessageSkipped += (s, e) => Log($"Модуль {e.ProcessedBy.Name} пропустил сообщение");

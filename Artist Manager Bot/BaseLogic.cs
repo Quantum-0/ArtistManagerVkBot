@@ -32,6 +32,7 @@ namespace Artist_Manager_Bot
         
         public event EventHandler<MessageEventArgs> MessageReceived;
         public event EventHandler<MessageEventArgs> MessageSended;
+        public event EventHandler<EventArgs> MessagesUpdateError;
         public event EventHandler<MessageProcessedEventArgs> MessageProcessed;
         public event EventHandler<MessageProcessedEventArgs> MessageProcessing;
         public event EventHandler<MessageProcessedEventArgs> MessageSkipped;
@@ -81,6 +82,7 @@ namespace Artist_Manager_Bot
         {
             vk.MessageReceived += Vk_MessageReceived;
             vk.MessageSended += (s, e) => MessageSended?.Invoke(s, e);
+            vk.UpdateMessagesError += (s, e) => MessagesUpdateError?.Invoke(s, e);
         }
 
         // Обработка приходящих сообщений
